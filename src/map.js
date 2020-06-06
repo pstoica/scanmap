@@ -1,6 +1,3 @@
-import mapboxgl from 'mapbox-gl';
-import 'mapbox-gl/dist/mapbox-gl.css';
-
 class Map {
   constructor(conf, onClick) {
     this.map = new mapboxgl.Map(conf);
@@ -35,8 +32,7 @@ class Map {
       el.style.background = 'none';
     }
 
-    let marker = new mapboxgl.Marker(el)
-      .setLngLat(coords);
+    let marker = new mapboxgl.Marker(el).setLngLat(coords);
 
     // Setup popup
     if (opts.element) {
@@ -52,7 +48,7 @@ class Map {
         popup.on('close', () => opts.onPopupClose(popup));
       }
 
-      marker.setPopup(popup)
+      marker.setPopup(popup);
     }
 
     marker.addTo(this.map);
@@ -62,7 +58,7 @@ class Map {
   jumpTo(coords) {
     this.map.jumpTo({
       center: coords,
-      zoom: 14,
+      zoom: 14
     });
   }
 }

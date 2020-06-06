@@ -2,7 +2,6 @@ import Map from './map';
 import Form from './form';
 import config from '../config';
 import setupCams from './cams';
-import mapboxgl from 'mapbox-gl';
 import { get } from './util';
 import { showLogs, fadeMarkers } from './logs';
 
@@ -20,7 +19,7 @@ function fetchLogs() {
 
 /* server sent events coooooode */
 const logSource = new EventSource(SSE_URL);
-logSource.onmessage = function(event) {
+logSource.onmessage = (event) => {
   // const log = JSON.parse(event.data);
   // showLogs([log], map, form);
 
@@ -81,7 +80,7 @@ setInterval(() => {
       location.reload();
     }
   });
-}, 5*60*1000);
+}, 5 * 60 * 1000);
 
 fetchLogs();
 setInterval(() => {
