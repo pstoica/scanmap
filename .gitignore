@@ -9,5 +9,4 @@ node_modules/
 venv/
 env/
 .venv
-.vscode
 stats.json
