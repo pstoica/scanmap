@@ -6,7 +6,6 @@ function makeMarkers(map, cams) {
   let markers = [];
   if (cams.length == 0) {
     toggleEl.innerHTML = 'No cameras for this region';
-
   } else {
     cams.forEach((cam) => {
       if (cam.url) {
@@ -21,12 +20,12 @@ function makeMarkers(map, cams) {
             tag: 'img',
             src: '#',
             dataset: {
-              src: cam.url
-            }
+              src: cam.url,
+            },
           }),
           className: 'marker marker-camera',
           popup: {
-            maxWidth: 'none'
+            maxWidth: 'none',
           },
           onPopupOpen: (popup) => {
             let img = popup._content.querySelector('img');
@@ -40,7 +39,7 @@ function makeMarkers(map, cams) {
           },
           onPopupClose: () => {
             if (interval) clearInterval(interval);
-          }
+          },
         });
         markers.push(marker);
       }

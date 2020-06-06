@@ -1,11 +1,11 @@
 function get(url, onSuccess, authKey) {
   return fetch(url, {
     headers: {
-      'Accept': 'application/json',
+      Accept: 'application/json',
       'Content-Type': 'application/json',
-      'X-AUTH': authKey
+      'X-AUTH': authKey,
     },
-    method: 'GET'
+    method: 'GET',
   })
     .then((res) => {
       if (!res.ok) {
@@ -24,11 +24,11 @@ function post(url, data, onSuccess, authKey) {
   return fetch(url, {
     headers: {
       'X-AUTH': authKey,
-      'Accept': 'application/json',
-      'Content-Type': 'application/json'
+      Accept: 'application/json',
+      'Content-Type': 'application/json',
     },
     method: 'POST',
-    body: JSON.stringify(data)
+    body: JSON.stringify(data),
   })
     .then((res) => {
       if (!res.ok) {

@@ -2,13 +2,13 @@ import Map from './map';
 import Form from './form';
 import config from '../config';
 import setupCams from './cams';
-import { get } from './util';
-import { showLogs, fadeMarkers } from './logs';
+import {get} from './util';
+import {showLogs, fadeMarkers} from './logs';
 
 function fetchLogs() {
   get(
     'log',
-    ({ logs }) => {
+    ({logs}) => {
       showLogs(logs, map, form);
     },
     form.authKey
@@ -38,13 +38,11 @@ const map = new Map(
     maxZoom: 18,
     minZoom: 10,
     zoom: MAP_ZOOM,
-    center: MAP_CENTER
+    center: MAP_CENTER,
   },
   (coord) => {
     if (form.authKey) {
-      document.getElementById(
-        'coordinates'
-      ).value = `${coord.lat},${coord.lng}`;
+      document.getElementById('coordinates').value = `${coord.lat},${coord.lng}`;
       form.previewCoords([coord.lng, coord.lat]);
     }
   }

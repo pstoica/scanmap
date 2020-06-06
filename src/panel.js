@@ -7,11 +7,14 @@ function showError(err) {
 }
 
 function addKey() {
-  post('keys', {
-    action: 'create'
-  }, (json) => {
-    keyItem(json.key);
-  }, KEY);
+  post(
+    'keys',
+    {action: 'create'},
+    (json) => {
+      keyItem(json.key);
+    },
+    KEY
+  );
 }
 
 const keysEl = document.getElementById('keys');
@@ -19,33 +22,41 @@ function keyItem(key) {
   let li = el({
     tag: 'li',
     innerText: key,
-    children: [{
-      tag: 'span',
-      className: 'revoke-key action',
-      innerText: 'revoke',
-      on: {
-        click: () => {
-          if (confirm(`Are you sure you want to revoke key "${key}"?`)) {
-            post('keys', {
-              key: key,
-              action: 'revoke'
-            }, () => {
-              console.log('revoked');
-              li.parentNode.removeChild(li);
-            }, KEY);
-          }
-        }
-      }
-    }]
+    children: [
+      {
+        tag: 'span',
+        className: 'revoke-key action',
+        innerText: 'revoke',
+        on: {
+          click: () => {
+            if (confirm(`Are you sure you want to revoke key "${key}"?`)) {
+              post(
+                'keys',
+                {key: key, action: 'revoke'},
+                () => {
+                  console.log('revoked');
+                  li.parentNode.removeChild(li);
+                },
+                KEY
+              );
+            }
+          },
+        },
+      },
+    ],
   });
   keysEl.appendChild(li);
 }
 
 function loadKeys() {
-  get('keys', (json) => {
-    json.keys.forEach((k) => keyItem(k));
-    document.getElementById('panel-main').style.display = 'block';
-  }, KEY).catch((err) => {
+  get(
+    'keys',
+    (json) => {
+      json.keys.forEach((k) => keyItem(k));
+      document.getElementById('panel-main').style.display = 'block';
+    },
+    KEY
+  ).catch((err) => {
     showError(err);
   });
 }

@@ -4,7 +4,7 @@ class Map {
     this.map.dragRotate.disable();
     this.map.touchZoomRotate.disableRotation();
     this.clickListeners = {
-      root: onClick
+      root: onClick,
     };
 
     this.map.on('click', (e) => {
@@ -38,7 +38,7 @@ class Map {
     if (opts.element) {
       let popup = new mapboxgl.Popup({
         offset: 25,
-        ...(opts.popup || {})
+        ...(opts.popup || {}),
       }).setDOMContent(opts.element);
 
       if (opts.onPopupOpen) {
@@ -58,7 +58,7 @@ class Map {
   jumpTo(coords) {
     this.map.jumpTo({
       center: coords,
-      zoom: 14
+      zoom: 14,
     });
   }
 }
